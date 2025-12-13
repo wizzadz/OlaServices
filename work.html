@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Olaolu-Services</title>
+  <link rel="icon" href="/favicon.ico">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-neutral-950 text-neutral-100">
+  <header class="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-neutral-950/70 border-b border-neutral-800">
+    <div class="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
+      <a href="/index.html" class="flex items-center gap-3 text-2xl font-extrabold tracking-tight">
+        <img src="/assets/brand/logo.svg" alt="Olaolu-Services" class="h-10 w-auto" />
+        <span class="hidden sm:inline">Olaolu-Services</span>
+      </a>
+      <nav class="hidden md:flex gap-6 text-sm">
+        <a href="/work.html" class="hover:opacity-80">Work</a>
+        <a href="/about.html" class="hover:opacity-80">About</a>
+        <a href="/contact.html" class="hover:opacity-80">Contact</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <a href="/contact.html" class="hidden md:inline-flex items-center gap-2 rounded-2xl border border-neutral-700 px-4 py-2 text-sm hover:bg-neutral-800">Book a call</a>
+        <button id="menuBtn" class="md:hidden inline-flex items-center justify-center rounded-xl border border-neutral-700 px-3 py-2 text-sm" aria-expanded="false" aria-controls="mobileNav">Menu</button>
+      </div>
+    </div>
+    <div id="mobileNav" class="md:hidden hidden border-t border-neutral-800 bg-neutral-950/95">
+      <div class="max-w-6xl mx-auto px-4 py-3 flex flex-col gap-3 text-sm">
+        <a href="/work.html" class="hover:opacity-80">Work</a>
+        <a href="/about.html" class="hover:opacity-80">About</a>
+        <a href="/contact.html" class="hover:opacity-80">Contact</a>
+        <a href="/contact.html" class="rounded-xl border border-neutral-700 px-4 py-2 text-center hover:bg-neutral-800">Book a call</a>
+      </div>
+    </div>
+    <script>
+      (function(){const b=document.getElementById('menuBtn');const m=document.getElementById('mobileNav'); if(b&&m){b.addEventListener('click',()=>{m.classList.toggle('hidden'); b.setAttribute('aria-expanded', m.classList.contains('hidden')?'false':'true');});}})();
+    </script>
+  </header>
+
+  <section class="mx-auto max-w-6xl px-4 py-16 md:py-24">
+    <h2 class="text-3xl font-bold mb-8">Selected Experience</h2>
+    <div class="space-y-6">
+      <div class="rounded-2xl border border-neutral-800 p-6">
+        <h3 class="font-semibold">Freelance Senior Project Manager</h3>
+        <p class="text-sm text-neutral-400">Sep 2024 – Present • Remote</p>
+        <p class="mt-2 text-sm text-neutral-300">IFF systems integration and product development. Leadership of multi-supplier delivery.</p>
+      </div>
+      <div class="rounded-2xl border border-neutral-800 p-6">
+        <h3 class="font-semibold">Team Lead Project Management — Kalinowski Consulting GmbH</h3>
+        <p class="text-sm text-neutral-400">Jan 2024 – Jun 2024 • Hamburg, Germany</p>
+        <p class="mt-2 text-sm text-neutral-300">Managed project teams and delivery governance.</p>
+      </div>
+      <div class="rounded-2xl border border-neutral-800 p-6">
+        <h3 class="font-semibold">IT Project Manager / Senior Consultant — amendoS GmbH</h3>
+        <p class="text-sm text-neutral-400">Dec 2019 – Jan 2024 • Hamburg, Germany</p>
+        <p class="mt-2 text-sm text-neutral-300">Requirements, supplier & tender management, integration & test leadership.</p>
+      </div>
+      <div class="rounded-2xl border border-neutral-800 p-6">
+        <h3 class="font-semibold">Project Manager — PLATH Group</h3>
+        <p class="text-sm text-neutral-400">Jun 2015 – Nov 2019 • Hamburg, Germany</p>
+        <p class="mt-2 text-sm text-neutral-300">Program planning and execution in an agile environment.</p>
+      </div>
+      <div class="rounded-2xl border border-neutral-800 p-6">
+        <h3 class="font-semibold">Project Manager (A400M DCMS Dataloader) — Altran (Subcontracted to Diehl Aerospace)</h3>
+        <p class="text-sm text-neutral-400">May 2014 – Nov 2014 • Frankfurt am Main, Germany</p>
+        <p class="mt-2 text-sm text-neutral-300">High-level requirements-based testing leadership.</p>
+      </div>
+      <div class="rounded-2xl border border-neutral-800 p-6">
+        <h3 class="font-semibold">Altran (Subcontracted to Airbus): Project Leader & IMA Focal Point</h3>
+        <p class="text-sm text-neutral-400">Apr 2009 – Nov 2014 • Hamburg, Germany</p>
+        <p class="mt-2 text-sm text-neutral-300">Team management, software integration, A350 Air System focal, test & configuration manager.</p>
+      </div>
+    </div>
+  </section>
+  <footer class="border-t border-neutral-900 mt-20">
+    <div class="mx-auto max-w-6xl px-4 py-10 text-sm text-neutral-500 flex flex-col md:flex-row items-center justify-between gap-4">
+      <p>© <script>document.write(new Date().getFullYear())</script> Olaolu-Services. All rights reserved.</p>
+      <div class="flex items-center gap-4">
+        <a href="/contact.html#legal" class="hover:text-neutral-300">Imprint & Privacy</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

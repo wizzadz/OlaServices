@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Olaolu-Services</title>
+  <link rel="icon" href="/favicon.ico">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-neutral-950 text-neutral-100">
+  <header class="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-neutral-950/70 border-b border-neutral-800">
+    <div class="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
+      <a href="/index.html" class="flex items-center gap-3 text-2xl font-extrabold tracking-tight">
+        <img src="/assets/brand/logo.svg" alt="Olaolu-Services" class="h-10 w-auto" />
+        <span class="hidden sm:inline">Olaolu-Services</span>
+      </a>
+      <nav class="hidden md:flex gap-6 text-sm">
+        <a href="/work.html" class="hover:opacity-80">Work</a>
+        <a href="/about.html" class="hover:opacity-80">About</a>
+        <a href="/contact.html" class="hover:opacity-80">Contact</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <a href="/contact.html" class="hidden md:inline-flex items-center gap-2 rounded-2xl border border-neutral-700 px-4 py-2 text-sm hover:bg-neutral-800">Book a call</a>
+        <button id="menuBtn" class="md:hidden inline-flex items-center justify-center rounded-xl border border-neutral-700 px-3 py-2 text-sm" aria-expanded="false" aria-controls="mobileNav">Menu</button>
+      </div>
+    </div>
+    <div id="mobileNav" class="md:hidden hidden border-t border-neutral-800 bg-neutral-950/95">
+      <div class="max-w-6xl mx-auto px-4 py-3 flex flex-col gap-3 text-sm">
+        <a href="/work.html" class="hover:opacity-80">Work</a>
+        <a href="/about.html" class="hover:opacity-80">About</a>
+        <a href="/contact.html" class="hover:opacity-80">Contact</a>
+        <a href="/contact.html" class="rounded-xl border border-neutral-700 px-4 py-2 text-center hover:bg-neutral-800">Book a call</a>
+      </div>
+    </div>
+    <script>
+      (function(){const b=document.getElementById('menuBtn');const m=document.getElementById('mobileNav'); if(b&&m){b.addEventListener('click',()=>{m.classList.toggle('hidden'); b.setAttribute('aria-expanded', m.classList.contains('hidden')?'false':'true');});}})();
+    </script>
+  </header>
+
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0 -z-10 pointer-events-none bg-[radial-gradient(60%_40%_at_50%_0%,rgba(99,102,241,0.15),rgba(0,0,0,0))]"></div>
+    <div class="relative z-20 mx-auto max-w-6xl px-4 py-20 md:py-28 grid md:grid-cols-2 gap-12 items-center pointer-events-auto">
+      <div>
+        <p class="mb-4 text-xs uppercase tracking-[0.25em] text-neutral-400">Project Management • Requirements Engineering • Risk Management • AI Transformation</p>
+        <h1 class="text-4xl md:text-6xl font-extrabold leading-tight">
+          Delivering complex projects <span class="text-indigo-400">on time</span><br class="hidden md:block"/> for Defense, IT & Tech.
+        </h1>
+        <p class="mt-6 max-w-2xl text-neutral-300">
+          Hamburg, Germany • Freelance Senior Project Manager & KI-Manager (IHK). I help organizations deliver regulated projects and transform operations with AI.
+        </p>
+        <div class="mt-8 flex flex-col sm:flex-row gap-3">
+          <a href="/contact.html" class="rounded-2xl bg-indigo-500 px-6 py-3 text-sm font-semibold hover:bg-indigo-400">Get a proposal</a>
+          <a href="/work.html" class="rounded-2xl border border-neutral-700 px-6 py-3 text-sm hover:bg-neutral-800">See recent work</a>
+        </div>
+      </div>
+      <div class="flex justify-center">
+        <img src="/assets/mike.jpg" alt="Michael Olaolu" class="rounded-3xl border border-neutral-800 shadow-lg max-h-96 object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="border-t border-neutral-900 bg-neutral-950">
+    <div class="mx-auto max-w-6xl px-4 py-16 md:py-24">
+      <h2 class="text-2xl md:text-3xl font-bold">Services</h2>
+      <div class="mt-8 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="rounded-2xl border border-neutral-800 p-6">
+          <h3 class="text-lg font-semibold">Project Management</h3>
+          <p class="mt-2 text-sm text-neutral-300">Planning, supplier management, reporting and delivery of complex, regulated programs.</p>
+        </div>
+        <div class="rounded-2xl border border-neutral-800 p-6">
+          <h3 class="text-lg font-semibold">Requirements Engineering</h3>
+          <p class="mt-2 text-sm text-neutral-300">Specification, baseline management, ICD alignment, test planning and traceability.</p>
+        </div>
+        <div class="rounded-2xl border border-neutral-800 p-6">
+          <h3 class="text-lg font-semibold">Risk Management</h3>
+          <p class="mt-2 text-sm text-neutral-300">RAID logs, mitigation strategies, compliance audits and monitoring.</p>
+        </div>
+        <div class="rounded-2xl border border-neutral-800 p-6">
+          <h3 class="text-lg font-semibold">AI Transformation</h3>
+          <p class="mt-2 text-sm text-neutral-300">Automation with Microsoft 365, RPA, and integrations to accelerate delivery.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="border-t border-neutral-900 mt-20">
+    <div class="mx-auto max-w-6xl px-4 py-10 text-sm text-neutral-500 flex flex-col md:flex-row items-center justify-between gap-4">
+      <p>© <script>document.write(new Date().getFullYear())</script> Olaolu-Services. All rights reserved.</p>
+      <div class="flex items-center gap-4">
+        <a href="/contact.html#legal" class="hover:text-neutral-300">Imprint & Privacy</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

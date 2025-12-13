@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Olaolu-Services</title>
+  <link rel="icon" href="/favicon.ico">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-neutral-950 text-neutral-100">
+  <header class="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-neutral-950/70 border-b border-neutral-800">
+    <div class="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
+      <a href="/index.html" class="flex items-center gap-3 text-2xl font-extrabold tracking-tight">
+        <img src="/assets/brand/logo.svg" alt="Olaolu-Services" class="h-10 w-auto" />
+        <span class="hidden sm:inline">Olaolu-Services</span>
+      </a>
+      <nav class="hidden md:flex gap-6 text-sm">
+        <a href="/work.html" class="hover:opacity-80">Work</a>
+        <a href="/about.html" class="hover:opacity-80">About</a>
+        <a href="/contact.html" class="hover:opacity-80">Contact</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <a href="/contact.html" class="hidden md:inline-flex items-center gap-2 rounded-2xl border border-neutral-700 px-4 py-2 text-sm hover:bg-neutral-800">Book a call</a>
+        <button id="menuBtn" class="md:hidden inline-flex items-center justify-center rounded-xl border border-neutral-700 px-3 py-2 text-sm" aria-expanded="false" aria-controls="mobileNav">Menu</button>
+      </div>
+    </div>
+    <div id="mobileNav" class="md:hidden hidden border-t border-neutral-800 bg-neutral-950/95">
+      <div class="max-w-6xl mx-auto px-4 py-3 flex flex-col gap-3 text-sm">
+        <a href="/work.html" class="hover:opacity-80">Work</a>
+        <a href="/about.html" class="hover:opacity-80">About</a>
+        <a href="/contact.html" class="hover:opacity-80">Contact</a>
+        <a href="/contact.html" class="rounded-xl border border-neutral-700 px-4 py-2 text-center hover:bg-neutral-800">Book a call</a>
+      </div>
+    </div>
+    <script>
+      (function(){const b=document.getElementById('menuBtn');const m=document.getElementById('mobileNav'); if(b&&m){b.addEventListener('click',()=>{m.classList.toggle('hidden'); b.setAttribute('aria-expanded', m.classList.contains('hidden')?'false':'true');});}})();
+    </script>
+  </header>
+
+  <section class="mx-auto max-w-6xl px-4 py-16 grid md:grid-cols-2 gap-10">
+    <div>
+      <h2 class="text-3xl font-bold">Let’s talk</h2>
+      <p class="mt-3 text-sm text-neutral-300">Tell me about your project. I typically reply within one business day.</p>
+      <div class="cf-turnstile" data-sitekey="0x4AAAAAACGfDGOLwwm98hRb" data-size="invisible" data-callback="onCaptchaSuccess"></div>
+    <form id="contactForm" class="mt-8 grid gap-4">
+        <input name="name" class="w-full rounded-xl bg-neutral-900 border border-neutral-800 px-4 py-3 text-sm" placeholder="Name" required />
+        <input name="email" type="email" class="w-full rounded-xl bg-neutral-900 border border-neutral-800 px-4 py-3 text-sm" placeholder="Email" required />
+        <textarea name="message" rows="5" maxlength="5000" class="w-full rounded-xl bg-neutral-900 border border-neutral-800 px-4 py-3 text-sm" placeholder="Project outline, timeline, budget" required></textarea>
+        <input name="hp" class="hidden" tabindex="-1" autocomplete="off" />
+        <input type="hidden" name="ts" id="tsField" />
+        <button class="justify-self-start rounded-2xl bg-indigo-500 px-6 py-3 text-sm font-semibold hover:bg-indigo-400">Send inquiry</button>
+        <p id="result" class="text-sm text-neutral-400"></p>
+        <input type="hidden" name="cf_token" id="cf_token" />
+    </form>
+      <div id="successPanel" class="hidden mt-6 rounded-2xl border border-green-900 bg-green-950/40 p-6">
+        <h3 class="text-green-300 font-semibold">Thanks, your message has been sent.</h3>
+        <p class="text-sm text-green-200/80 mt-2">I’ll get back to you within one business day.</p>
+        <div class="mt-4 flex gap-3">
+          <a href="/index.html" class="rounded-xl border border-neutral-700 px-4 py-2 text-sm hover:bg-neutral-800">Back to home</a>
+          <a href="/work.html" class="rounded-xl border border-neutral-700 px-4 py-2 text-sm hover:bg-neutral-800">See recent work</a>
+        </div>
+      </div>
+    </div>
+    <div class="rounded-3xl border border-neutral-800 p-8">
+      <h3 class="font-semibold">Direct</h3>
+      <ul class="mt-3 text-sm text-neutral-300 space-y-2">
+        <li>Email: <a class="underline decoration-neutral-700 hover:text-neutral-100" href="mailto:info@olaolu-services.com">info@olaolu-services.com</a></li>
+        <li>Location: Hamburg, DE</li>
+        <li>Availability: Remote-first, on-site by arrangement</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="legal" class="mx-auto max-w-4xl px-4 pb-16">
+    <div class="rounded-3xl border border-neutral-800 p-6">
+      <h2 class="text-2xl font-bold">Imprint & Privacy</h2>
+      <div class="mt-6 space-y-6 text-sm text-neutral-300">
+        <div>
+          <h3 class="font-semibold text-neutral-200">Imprint</h3>
+          <p><strong>Olaolu-Services</strong><br>
+          Michael Olaolu<br>
+          c/o Online-Impressum.de #35164<br>
+          Europaring 90<br>
+          53757 Sankt Augustin<br>
+          Germany</p>
+          <p class="mt-2"><strong>Contact:</strong> info@olaolu-services.com</p>
+          <p class="mt-2"><strong>VAT ID:</strong> DE428326225</p>
+          <p class="mt-2"><strong>Responsible for content (RStV §55 II):</strong><br>Michael Olaolu, c/o Online-Impressum.de #35164, Europaring 90, 53757 Sankt Augustin, Germany</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-neutral-200">Privacy Notice (GDPR)</h3>
+          <p>We do not use tracking cookies. Personal data is processed only when you submit the contact form. The data (name, email, message) is used solely to respond to your inquiry under Art. 6(1)(b) GDPR and is deleted once the inquiry is closed unless statutory retention obligations apply.</p>
+          <p class="mt-2">Rights: access, rectification, erasure, restriction, portability, and objection (Art. 15–21 GDPR). Contact: info@olaolu-services.com.</p>
+          <p class="mt-2">Supervisory authority: The Hamburg Commissioner for Data Protection and Freedom of Information.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    document.getElementById('tsField').value = Date.now().toString();
+    const form = document.getElementById('contactForm');
+    const result = document.getElementById('result');
+    const successPanel = document.getElementById('successPanel');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      result.textContent = 'Sending…';
+      const data = Object.fromEntries(new FormData(form).entries());
+      try {
+        const res = await (() => { if (window.turnstile && turnstileWidgetId!==null) { window.turnstile.execute(turnstileWidgetId); } })();
+      fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        const json = await res.json();
+        if (res.ok) {
+          result.textContent = '';
+          form.classList.add('hidden');
+          successPanel.classList.remove('hidden');
+        } else if (res.status === 429) {
+          result.textContent = 'Too many requests. Please try again in a few minutes.';
+        } else {
+          result.textContent = 'There was a problem. Please email info@olaolu-services.com.';
+          console.error(json);
+        }
+      } catch (err) {
+        result.textContent = 'Network error.';
+      }
+    });
+  </script>
+  <footer class="border-t border-neutral-900 mt-20">
+    <div class="mx-auto max-w-6xl px-4 py-10 text-sm text-neutral-500 flex flex-col md:flex-row items-center justify-between gap-4">
+      <p>© <script>document.write(new Date().getFullYear())</script> Olaolu-Services. All rights reserved.</p>
+      <div class="flex items-center gap-4">
+        <a href="/contact.html#legal" class="hover:text-neutral-300">Imprint & Privacy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+</body>
+</html>
