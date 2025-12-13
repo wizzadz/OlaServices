@@ -51,7 +51,8 @@
         <button class="justify-self-start rounded-2xl bg-indigo-500 px-6 py-3 text-sm font-semibold hover:bg-indigo-400">Send inquiry</button>
         <p id="result" class="text-sm text-neutral-400"></p>
         <input type="hidden" name="cf_token" id="cf_token" />
-    </form>
+    <p id="form-status" class="text-xs text-neutral-400 mt-3"></p>
+</form>
       <div id="successPanel" class="hidden mt-6 rounded-2xl border border-green-900 bg-green-950/40 p-6">
         <h3 class="text-green-300 font-semibold">Thanks, your message has been sent.</h3>
         <p class="text-sm text-green-200/80 mt-2">I’ll get back to you within one business day.</p>
@@ -139,5 +140,75 @@
   </footer>
 
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+<script>
+(function() {
+  const form = document.querySelector('form[name="contact"]') || document.querySelector('form#contact-form');
+  if (!form) return;
+  const statusEl = document.getElementById('form-status');
+  let widgetId = null;
+  window.onCaptchaReady = function() {
+    const el = document.querySelector('.cf-turnstile');
+    if (el && window.turnstile) {
+      widgetId = window.turnstile.render(el, {
+        sitekey: '0x4AAAAAACGfDGOLwwm98hRb',
+        size: 'invisible',
+        callback: function(token) {
+          const hidden = document.getElementById('cf_token');
+          if (hidden) hidden.value = token;
+          actuallySubmit();
+        }
+      });
+    }
+  };
+  function setStatus(msg, ok) {
+    if (!statusEl) return;
+    statusEl.textContent = msg;
+    statusEl.style.color = ok ? '#7EE787' : '#FF6B6B';
+  }
+  async function actuallySubmit() {
+    try {
+      const payload = Object.fromEntries(new FormData(form).entries());
+      const res = await fetch(new URL('/api/contact', location.origin), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+        credentials: 'same-origin',
+        redirect: 'follow',
+        cache: 'no-store',
+      });
+      const txt = await res.text();
+      if (!res.ok) {
+        setStatus('Error ' + res.status + ': ' + txt, false);
+      } else {
+        let obj = {};
+        try { obj = JSON.parse(txt); } catch(e) {}
+        setStatus(obj.message || 'Message sent. I will get back to you shortly.', true);
+        form.reset();
+      }
+    } catch (e) {
+      setStatus('Network error: ' + (e && e.message ? e.message : e), false);
+    }
+  }
+  form.addEventListener('submit', function(ev) {
+    ev.preventDefault();
+    setStatus('Sending...', true);
+    try {
+      if (window.turnstile && typeof window.turnstile.execute === 'function' && widgetId !== null) {
+        window.turnstile.reset(widgetId);
+        window.turnstile.execute(widgetId);
+      } else {
+        actuallySubmit();
+      }
+    } catch (e) {
+      actuallySubmit();
+    }
+  });
+  // backfill if onCaptchaReady never fires
+  if (document.readyState !== 'loading') { window.onCaptchaReady(); } 
+  else { document.addEventListener('DOMContentLoaded', window.onCaptchaReady); }
+})();
+</script>
+
 </body>
 </html>
