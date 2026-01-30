@@ -49,7 +49,7 @@
         <textarea name="message" rows="5" maxlength="5000" class="w-full rounded-xl bg-neutral-900 border border-neutral-800 px-4 py-3 text-sm" placeholder="Project outline, timeline, budget" required></textarea>
         
         <!-- Honeypot field - hidden from humans, bots will fill it -->
-        <input name="hp" type="text" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true" />
+        <input name="hp" type="text" style="display:none !important" tabindex="-1" autocomplete="off" aria-hidden="true" />
         
         <!-- Timestamp for timing check -->
         <input type="hidden" name="ts" id="tsField" />
@@ -127,6 +127,7 @@
     
     // Turnstile setup
     let turnstileWidgetId = null;
+    let userClickedSubmit = false; // Guard flag - only submit if user clicked
     
     function onTurnstileLoad() {
       turnstileWidgetId = turnstile.render('#turnstileContainer', {
@@ -139,13 +140,18 @@
     
     function onTurnstileSuccess(token) {
       document.getElementById('cfToken').value = token;
-      // Now actually submit the form
-      submitForm();
+      // Only submit if user actually clicked the button
+      if (userClickedSubmit) {
+        submitForm();
+      }
     }
     
     function onTurnstileError() {
-      document.getElementById('result').textContent = 'Verification failed. Please refresh and try again.';
-      document.getElementById('submitBtn').disabled = false;
+      if (userClickedSubmit) {
+        document.getElementById('result').textContent = 'Verification failed. Please refresh and try again.';
+        document.getElementById('submitBtn').disabled = false;
+        userClickedSubmit = false;
+      }
     }
     
     // Form handling
@@ -157,15 +163,23 @@
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       
+      // Set flag that user clicked submit
+      userClickedSubmit = true;
+      
       // Disable button to prevent double-submit
       submitBtn.disabled = true;
       result.textContent = 'Verifying...';
       
-      // Execute Turnstile challenge
-      if (turnstileWidgetId !== null) {
+      // Check if we already have a token
+      const existingToken = document.getElementById('cfToken').value;
+      if (existingToken) {
+        // Already have token, submit directly
+        submitForm();
+      } else if (turnstileWidgetId !== null) {
+        // Execute Turnstile challenge
         turnstile.execute(turnstileWidgetId);
       } else {
-        // Turnstile not loaded, try direct submit
+        // Turnstile not loaded, try direct submit (will fail captcha check)
         submitForm();
       }
     });
@@ -202,7 +216,8 @@
         submitBtn.disabled = false;
       }
       
-      // Reset Turnstile for potential retry
+      // Reset state for potential retry
+      userClickedSubmit = false;
       if (turnstileWidgetId !== null) {
         turnstile.reset(turnstileWidgetId);
       }
