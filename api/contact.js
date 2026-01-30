@@ -17,13 +17,11 @@ function getIP(req) {
 // Detect gibberish/spam content
 function looksLikeSpam(text) {
   if (!text) return false;
-  // Random character strings (high consonant ratio, no spaces)
   const noSpaces = text.replace(/\s/g, '');
   if (noSpaces.length > 10 && !text.includes(' ')) {
     const consonants = (noSpaces.match(/[bcdfghjklmnpqrstvwxz]/gi) || []).length;
     if (consonants / noSpaces.length > 0.7) return true;
   }
-  // Very short message with random chars
   if (text.length < 20 && /^[a-zA-Z]{10,}$/.test(noSpaces)) return true;
   return false;
 }
@@ -32,19 +30,13 @@ export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
   try {
-    // Read raw body
-    let raw = '';
-    await new Promise((resolve) => {
-      req.on('data', (chunk) => (raw += chunk));
-      req.on('end', resolve);
-    });
-    const body = raw ? JSON.parse(raw) : {};
+    // Vercel automatically parses JSON body into req.body
+    const body = req.body || {};
     const { name = '', email = '', message = '', cf_token = '', hp = '', ts = '' } = body;
 
     // 1. Honeypot check - should be empty (bots fill hidden fields)
     if (hp) {
       console.log('Honeypot triggered, rejecting');
-      // Return success to not tip off bots, but don't send email
       return res.status(200).json({ ok: true });
     }
 
@@ -54,7 +46,7 @@ export default async function handler(req, res) {
       const elapsed = Date.now() - submitTime;
       if (elapsed < MIN_SUBMIT_TIME_MS) {
         console.log(`Form submitted too fast (${elapsed}ms), rejecting`);
-        return res.status(200).json({ ok: true }); // Silent reject
+        return res.status(200).json({ ok: true });
       }
     }
 
@@ -66,7 +58,7 @@ export default async function handler(req, res) {
     // 4. Spam content check
     if (looksLikeSpam(name) || looksLikeSpam(message)) {
       console.log('Spam content detected, rejecting');
-      return res.status(200).json({ ok: true }); // Silent reject
+      return res.status(200).json({ ok: true });
     }
 
     // 5. Rate limit by IP
