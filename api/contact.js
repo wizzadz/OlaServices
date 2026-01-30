@@ -55,11 +55,11 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Missing fields' });
     }
 
-    // 4. Spam content check
-    if (looksLikeSpam(name) || looksLikeSpam(message)) {
-      console.log('Spam content detected, rejecting');
-      return res.status(200).json({ ok: true });
-    }
+    // 4. Spam content check - DISABLED (too aggressive, other protections sufficient)
+    // if (looksLikeSpam(name) || looksLikeSpam(message)) {
+    //   console.log('Spam content detected, rejecting');
+    //   return res.status(200).json({ ok: true });
+    // }
 
     // 5. Rate limit by IP
     const ip = getIP(req);
